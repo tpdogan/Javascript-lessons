@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link href="../../reset.css" type="text/css" rel="stylesheet">-->
+        <style>
+            body {display: flex; flex-direction: row;}
+            .column {width: 25%;}
+        </style>
+    </head>
+    <body>
+        <div class="column">
+        <h2>Javascript fundamentals 1</h2>
+        <p id="java1"></p>
+        <p id="java2"></p>
+        <p id="java3"></p>
+        <p id="java4"></p>
+        <p id="java5"></p>
+        <p id="java6"></p>
+        <p id="java7"></p>
+        <p id="java8"></p>
+        <p id="java9"></p>
+        <p id="java10"></p>
+        <p id="java11"></p>
+        <p id="java12"></p>
+        <p id="java13"></p>
+        <p id="java14"></p>
+        <p id="java15"></p>
+        <p id="java16"></p>
+        <p id="java17"></p>
+        <p id="java18"></p>
+        <p id="java19"></p>
+        <p id="java20"></p>
+        <p id="java21"></p>
+        <p id="java22"></p>
+        <p id="java23"></p>
+        <p id="java24"></p>
+        </div>
+        <div class="column">
+        <p id="java25"></p>
+        <p id="java26"></p>
+        <p id="java27"></p>
+        <p id="java28"></p>
+        <form onsubmit="return test29();"><input type="text" id="forjava29" autocomplete="off" maxlength="25"><button type="submit">Submit</button></form>
+        <p id="java29">You can change this using upper form!</p>
+        <form onsubmit="return test30();">30 >= <input type="text" id="forjava30" autocomplete="off" maxlength="3"><button type="submit">Submit</button></form>
+        <p id="java30">The answer is: </p>
+        <p id="java31"></p>
+        <p id="java32"></p>
+        <p id="java33"></p>
+        <p id="java34"></p>
+        <p id="java35"></p>
+        <p id="java36"></p>
+        <p id="java37"></p>
+        <p id="java38"></p>
+        <p id="java39"></p>
+        <p id="java40"></p>
+        <p id="java41"></p>
+        <form onsubmit="return test42();"><input type="text" id="forjava42" autocomplete="off" maxlength="25"><button type="submit">Submit</button></form>
+        <p id="java42">Percentage is</p>
+        <p id="java43"></p>
+        <p id="java44"></p>
+        <p id="java45"></p>
+        <p id="java46"></p>
+        </div>
+        <div class="column">
+        <p id="java47"></p>
+        <p id="java48"></p>
+        <p id="java49"></p>
+        <p id="java50"></p>
+        <p id="java51"></p>
+        <p id="java52"></p>
+        <p id="java53"></p>
+        <p id="java54"></p>
+        <p id="java55"></p>
+        <p id="java56"></p>
+        <p id="java57"></p>
+        <p id="java58"></p>
+        <p id="java59"></p>
+        <p id="java60"></p>
+        <label for="major"></label>
+        <select id="major">
+            <option value="" disabled selected>Make a choice</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        <p id="java61">Major none</p>
+        <label for="input62"></label>
+        <input id="input62" size="2">
+        <p id="java62">?</p>
+        <label for="twosel"></label>
+        <select id="twosel">
+            <option value="" disabled selected>What do you want to eat?</option>
+            <option value="pizza">Pizza</option>
+            <option value="hamburger">Hamburger</option>
+        </select>
+        <p id="java63">Hungry..</p>
+        <p id="java64"></p>
+        <p id="java65"></p>
+        <canvas width="200" height="80" style="background-color: lightgray;" onclick="draw()"></canvas>
+        </div>
+        <div class="column">
+        <input id="input66">
+        <p id="java66">123</p>
+        <p id="java67" onclick="adder('Please ');">Click me</p>
+        <p id="java68"></p>
+        <p id="java69"></p>
+        <p id="java70"></p>
+        <p id="java71"></p>
+        <p id="java72"></p>
+        <p id="java73" style="width: 100%; overflow: auto;"></p>
+        <p id="java74"></p>
+        <p id="java75"></p>
+        <p id="java76"></p>
+        <p id="java77"></p>
+        <p id="java78"></p>
+        <p id="java79"></p>
+        </div>
+    </body>
+    <!--**********************************************************************************************-->
+    <!--**********************************************************************************************-->
+    <!--**********************************************************************************************-->
+    <!--**********************************************************************************************-->
+    <!--**********************************************************************************************-->
+    <!--**********************************************************************************************-->
+    <script>
+        let x = 1;
+        let y = 2;
+        let z = "3";
+        let q = "A";
+        let n = NaN;
+        let e = 0xabc; /* 0x define hexadecimal, do not define numbers like let x = 05; */
+        let w = new Number(1); /* This also defines number but slows the whole operation */
+        let v = new Number(1);
+        let r = 33;
+        let p = 5;
+        let s = 3.34723958;
+        let t = 13;
+        t *= y;
+        let a = "4";
+        let c,d,f;
+        c = d = f = 44;
+        let g;
+        let h = null;
+        let i = ' timber limber cumber founder ';
+        document.getElementById("java1").innerHTML = x+y;
+        document.getElementById("java2").innerHTML = 43e-3;
+        document.getElementById("java3").innerHTML = 0.2 + 0.1;
+        document.getElementById("java4").innerHTML = (x+y)/10;
+        document.getElementById("java5").innerHTML = "10 " + "21";
+        document.getElementById("java6").innerHTML = "10" + x;
+        document.getElementById("java7").innerHTML = "The expected results is not " + x+y;
+        document.getElementById("java8").innerHTML = "The expected results is " + (x+y);
+        document.getElementById("java9").innerHTML =  x + y + z; /* Left runs first */
+        document.getElementById("java10").innerHTML = y/x * z/x; /* - * / treated differently than + which concatenates */
+        document.getElementById("java11").innerHTML = y / q;
+        document.getElementById("java12").innerHTML = isNaN (y / q);
+        document.getElementById("java13").innerHTML = NaN + x + y;
+        document.getElementById("java14").innerHTML = q + y / q;
+        document.getElementById("java15").innerHTML = typeof n;
+        document.getElementById("java16").innerHTML = -x / 0;
+        document.getElementById("java17").innerHTML = typeof (y / 0);
+        document.getElementById("java18").innerHTML = e; /* Hexadecimal number */
+        document.getElementById("java19").innerHTML = y.toString(2); /* number within toString is the base definition, here 2 is binary */
+        document.getElementById("java20").innerHTML = (x == w); /* Compares the value only */
+        document.getElementById("java21").innerHTML = (x === w); /* Compare whole properties */
+        document.getElementById("java22").innerHTML = (w == v); /* Objects cannot be compared */
+        document.getElementById("java23").innerHTML = r % p; /* Remainder after division */
+        document.getElementById("java24").innerHTML = ++r; /* Increment before sending, the other is r++ but this will increase after sending */
+        document.getElementById("java25").innerHTML = p ** 3; /* Power */
+        document.getElementById("java26").innerHTML = s.toFixed(3);
+        document.getElementById("java27").innerHTML = Number(q);
+        document.getElementById("java28").innerHTML = t;
+        function test29() {
+            /*alert('here');*/
+            document.getElementById("java29").innerHTML = document.getElementById("forjava29").value;
+            return false;
+        }
+        function test30() {
+            document.getElementById("java30").innerHTML = "The answer is: " + (30 >= document.getElementById("forjava30").value);
+            return false;
+        }
+        document.getElementById("java31").innerHTML = +a + +z; /* Plus sign converts string to number */
+        document.getElementById("java32").innerHTML = +a + (b = t + 2);
+        document.getElementById("java33").innerHTML = f;
+        document.getElementById("java34").innerHTML = f-- / 2;
+        document.getElementById("java36").innerHTML = 144;
+        document.getElementById("java35").innerHTML = "x = " /*+ prompt("The value of x is ")*/;
+        function test37() {
+            let name, admin;
+            name = 'TPDogan';
+            admin = name;
+            document.getElementById("java37").innerHTML = admin;
+        }
+        test37();
+        document.getElementById("java38").innerHTML = `The calculation within string is ${+a + b}`;
+        document.getElementById("java39").innerHTML = g;
+        document.getElementById("java40").innerHTML = h;
+        document.getElementById("java41").innerHTML = 'I\'ve escaped!';
+        function test42() {
+            let perc = document.getElementById("forjava42").value;
+            document.getElementById("java42").innerHTML = `Percentage is ${perc >= 0 && perc <= 1 ? (perc*100).toFixed(0) + '%' : 'not valid'}`;
+            return false;
+        }
+        document.getElementById("java43").innerHTML = 'The next line is <br/> this';
+        document.getElementById("java44").innerHTML = i.length;
+        document.getElementById("java45").innerHTML = i.indexOf('limber');
+        document.getElementById("java46").innerHTML = i.lastIndexOf('r');
+        document.getElementById("java47").innerHTML = i.indexOf('r', 5); /* number is the starting point */
+        document.getElementById("java48").innerHTML = i.lastIndexOf('r', 15); /* number is the starting point from backwards */
+        document.getElementById("java49").innerHTML = i.search('timber'); /* indexOf method is stronger?! */
+        document.getElementById("java50").innerHTML = i.slice(3,13); /* from 5 to 12: 13th char is not involved */
+        document.getElementById("java51").innerHTML = i.slice(-5); /* end-5 till the end, better to stick positive values */
+        document.getElementById("java52").innerHTML = i.substr(6,10); /* start from 6 and take 10 chars */
+        document.getElementById("java53").innerHTML = i.replace('cumber','cucumber'); /* replace the first match */
+        document.getElementById("java54").innerHTML = i.replace(/lImber/i, 'trimer'); /* replace case insensitively */
+        document.getElementById("java55").innerHTML = i.toUpperCase();
+        document.getElementById("java56").innerHTML = 'all' + i.trim(); /* trims whitespaces from beginning and end */
+        document.getElementById("java57").innerHTML = i.charAt(5);
+        document.getElementById("java58").innerHTML = i[12];
+        let j59; if (p==r) {j59 = "drop"} else {j59 = "dorp"};
+        document.getElementById("java59").innerHTML = j59;
+        let j60 = ("" || n || "Anon");
+        document.getElementById("java60").innerHTML = j60;
+
+        /* if statements practice 
+        let userName = prompt("Who are you?");
+        if (userName=="Admin") {
+            let pass = prompt("Please enter password: ");
+            if (pass=="theMaster") {alert("Welcome, Master!");}
+            else if (pass==null || pass=='') {alert("Operation cancelled!");}
+            else {alert("Wrong password!");}
+            }
+        else if (userName==null || userName=='') {alert("Operation cancelled!");}
+        else {alert("I don't know you!");} */
+
+        /* eventlistener practice */
+        let area = document.getElementById("java61");
+        let select = document.getElementById("major");
+        select.addEventListener('change', setMajor);
+        function setMajor() {
+            let val = select.value;
+            if (val == 'A') {area.innerHTML = "Major A"}
+            else if (val == 'B') {area.innerHTML = "Major B"}
+            else if (val == 'C') {area.innerHTML = "Major C"}
+            else {area.innerHTML = "Major None"}
+        }
+
+        /* switch case practice */
+        let in62 = document.getElementById("input62");
+        let p62 = document.getElementById("java62");
+        in62.addEventListener('change', caser);
+        function caser() {
+            let val62 = +in62.value;
+            switch (val62) {
+                case 1:
+                p62.innerHTML = "That's just one"
+                break;
+
+                case 2:
+                p62.innerHTML = "That's just two"
+                break;
+
+                case 0:
+                case 10:
+                p62.innerHTML = "That has zero in it"
+                break;
+
+                default:
+                p62.innerHTML = "That's just ..."
+            }
+        }
+
+        /* ternary practice */
+        let p63 = document.getElementById("java63");
+        let val63 = document.getElementById("twosel");
+        val63.addEventListener('change', ternary);
+        function ternary() {
+            (val63.value === "pizza") ? p63.innerHTML = "Ordering pizza" : p63.innerHTML = "Ordering hamburger";
+        }
+
+        /* array practice */
+        let myArray = ['1','a','2'];
+        document.getElementById("java64").textContent = myArray.join('qq');
+        document.getElementById("java65").textContent = Math.random();
+
+        /* canvas practice */
+        let canvas = document.querySelector('canvas');
+        let ctx = canvas.getContext('2d');
+        function draw() {
+            ctx.clearRect(0,0,200,80);
+            for (let i=0; i<50; i++)
+            {
+                ctx.beginPath();
+                ctx.fillStyle = 'rgba(255,0,0,0.5)';
+                ctx.arc(Math.random()*200, Math.random()*80, Math.random()*10, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+
+        /* only number required */
+        let in66 = document.getElementById("input66");
+        let p66 = document.getElementById("java66");
+        in66.addEventListener('change', numbersAreReal);
+        function numbersAreReal() {
+        if (isNaN(in66.value)){p66.textContent = "You don't know numbers!";}
+        else {p66.textContent = "Good, a number!";}
+        }
+
+        /* non given function args */
+        function adder(str1, str2 = 'end here')
+        {
+            document.getElementById("java67").innerHTML = str1 + str2;
+        }
+
+        /* short func test 
+        let x1 = prompt('x');
+        let n1 = prompt('n');
+        alert(pow(x1,n1));
+        function pow(x,n) {if (n<1 || isNaN(x)) return 'Enter valid numbers!'; return x**n;}*/
+
+        /* confirm function
+        confirm('Question');*/
+
+        /* arrow functions */
+        let myArrow = (a,b,c) => a*b/c;
+        document.getElementById("java68").textContent = myArrow(1,4,3);
+        let myArrow2 = () => 'Arrowed';
+        document.getElementById("java69").textContent = myArrow2();
+        let myArrow3 = d => {if (d==1) return '1 time'; else return 'more time';};
+        document.getElementById("java70").textContent = myArrow3(2);
+
+        /* excersizes */
+        let cap = str => str.charAt(0).toUpperCase() + str.slice(1);
+        document.getElementById("java71").textContent = cap('my man');
+        let lastlet = str => str.slice(-1);
+        document.getElementById("java72").textContent = lastlet('my man');
+
+        /* fizz fuzz */
+        let upTo = prompt('Up to which number?');
+        let p73 = document.getElementById("java73");
+        for (let i=1; i<upTo; i++){
+            if (i%3==0 && i%5!=0) {p73.textContent += ' Fizz,';}
+            else if (i%3!=0 && i%5==0) {p73.textContent += ' Buzz,';}
+            else if (i%3==0 && i%5==0) {p73.textContent += ' Fizz Buzz,';}
+            else {p73.textContent += ' ' + i + ',';}
+        }
+    </script>
+</html>
