@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="../../reset.css" type="text/css" rel="stylesheet">
+        <style>
+            body {display: flex; flex-direction: row;}
+            h2 {font-weight: 900; font-size: 20px; padding-left: 20px; padding-top: 20px;}
+            h3 {font-weight: 900; font-size: 15px; padding-left: 20px; padding-top: 10px; text-decoration: underline;}
+            fieldset {margin-top: 20px; margin-left: 20px; border: 1px solid black; width: max-content;}
+            p {text-indent: 20px; margin-top: 20px;}
+            .column {width: 33%;}
+        </style>
+    </head>
+    <body>
+        <div class="column">
+        <h2 id="h2-1">Javascript fundamentals 2</h2>
+        <h3 id="h3-1">Rock - Paper - Scissors</h3>
+        <fieldset id="fieldset1">
+            <legend id="legend1">Select an item</legend>
+            <label for="input1"><input type="radio" name="items" id="input1" autocomplete="off" value="Rock" onclick="game();">Rock</label>
+            <label for="input2"><input type="radio" name="items" id="input2" autocomplete="off" value="Paper" onclick="game();">Paper</label>
+            <label for="input3"><input type="radio" name="items" id="input3" autocomplete="off" value="Scissors" onclick="game();">Scissors</label>
+        </fieldset>
+        <p id="p1">Cpu:----  You:----</p>
+        <p id="p2">Win: 0    Draw: 0    Lose: 0</p>
+        <h3 id="h3-2">Array studies</h3>
+        <p id="p3"></p><p id="p4"></p><p id="p5"></p><p id="p6"></p><p id="p7"></p>
+        <p id="p8"></p><p id="p9"></p>
+        <p id="p10"></p><p id="p11"></p><p id="p12"></p><p id="p13"></p><p id="p14"></p>
+        <p id="p15"></p><p id="p16"></p><p id="p17"></p><p id="p18"></p><p id="p19"></p>
+        <p id="p20"></p><p id="p21"></p>
+        </div>
+        <div class="column" id="col-2">
+        <p id="p22"></p><p id="p23"></p><p id="p24"></p>
+        <p id="p25"></p><p id="p26"></p><p id="p27"></p><p id="p28">1</p><p id="p29"></p>
+        </div>
+        <div class="column" id="col-3">
+        </div>
+    </body>
+    <script>
+        // This part is for rock paper scissors game
+        let win1 = 0;
+        let win2 = 0;
+        let draw = 0;
+        function computerPlay(){
+            let select = Math.random()*3;
+            return (select>2) ? 'Rock' : (select>1) ? 'Paper' : 'Scissors';
+        }
+        function playRPS(computerSelection, playerSelection){
+            computerSelection = computerSelection.toLowerCase();
+            playerSelection = playerSelection.toLowerCase();
+            if (playerSelection==computerSelection) {return 'It is a draw.';}
+            else if (playerSelection=='rock'){
+                if (computerSelection=='paper') {return "You lose. Paper beats rock.";}
+                else {return "You win. Rock beats scissors."}
+            }
+            else if (playerSelection=='paper'){
+                if (computerSelection=='scissors') {return "You lose. Scissors beats paper."}
+                else {return "You win. Paper beats rock."}
+            }
+            else if (playerSelection=='scissors'){
+                if (computerSelection=='rock') {return "You lose. Rock beats scissors."}
+                else {return "You win. Scissors beats paper."}
+            }
+        }
+        function game(){
+            let cpu1 = computerPlay();
+            let cpu2 = document.getElementById('input1').checked ? document.getElementById('input1').value :
+                document.getElementById('input2').checked ? document.getElementById('input2').value :
+                document.getElementById('input3').value;
+            let result = 'Cpu: ' + cpu1 + '. You: ' + cpu2 + '. ' + playRPS(cpu1,cpu2);
+            document.getElementById('p1').textContent = result;
+            if (result.includes('win')){win2++;}
+            else if (result.includes('lose')){win1++;}
+            else {draw++;}
+            document.getElementById('p2').textContent = 'Wins: ' + win2 + ', Loses: ' + win1 + ', Draws: ' + draw;
+        }
+        // This part is for array studies only
+        let queue = ['tmr', 'pln', 'dgn'];
+        document.getElementById('p3').textContent = queue[2];
+        document.getElementById('p4').textContent = (queue[1]='PLN');
+        document.getElementById('p5').textContent = queue;
+        //queue.push(game()); if function is pushed, it will execute
+        //queue.push(function() {game();}); this is a possibility but not easy to recall
+        document.getElementById('p6').textContent = queue.length;
+        function stars(text) {document.getElementById('p7').textContent += '*' + text + '* ';}
+        queue.forEach(stars);
+        document.getElementById('p8').textContent = (queue[queue.length] = '2018');
+        document.getElementById('p9').textContent = Array.isArray(queue);
+        document.getElementById('p10').textContent = queue.toString();
+        document.getElementById('p11').textContent = queue.join('+');
+        document.getElementById('p12').textContent =  queue.pop(); // pop returns the removed last element
+        document.getElementById('p13').textContent = queue.push('2020'); // push returns the new array length
+        document.getElementById('p14').textContent = queue.shift(); // shift returns the removed first element
+        document.getElementById('p15').textContent = queue.unshift('TMR'); // unshift returns the new array length
+        queue.splice(3,0,'2018','2019');
+        // splice places the new strings (at the end) to the 3rd location (in this case)
+        // 0 defines how many elements to remove
+        document.getElementById('p16').textContent = queue;
+        // splice can also be used to remove elements (3,3) -> starts at 3 and deletes (3,4,5)
+        document.getElementById('p17').textContent = queue.splice(3,3);
+        document.getElementById('p18').textContent = queue.concat(queue); // queue is still the same with 3 elements
+        document.getElementById('p19').textContent = queue.concat(queue,queue,queue,'2018'); // 3 queues and 2018 are concatenated
+        document.getElementById('p20').textContent = queue.slice(1);
+        document.getElementById('p21').textContent = queue.slice(0,2);
+        breakhere: for (let i=0; i<10; i++){
+            document.getElementById('p22').textContent += queue[i];
+            if (i==1) {document.getElementById('p22').textContent += 'Broken'; break breakhere;}
+        }
+        for (let i=2; i<11; i=i+2){
+        document.getElementById('p23').textContent += i + ' ';}
+        /* do while test
+        do {
+            let inp = prompt('Enter greater than 100');
+            if (inp>100 || inp==null) {break;}
+        }while(true);*/
+        /* prime number test
+        let n = prompt('Show primes until');
+        if (n>=2){
+            document.getElementById('p24').textContent += 2 + ' ';
+            for (let i = 2; i<=n; i++) {
+                for (let j = 2; j<i; j++){
+                    if (i%j==0){break;}
+                    else if (j==i-1) {document.getElementById('p24').textContent += i + ' ';}
+                }
+            }
+        }*/
+        /* practice
+        repeatString(prompt('Tell me the string'),prompt('How many times'));
+        function repeatString(str,num){
+            if (isNaN(num) || num<1 || str==undefined) {alert(str + ' or ' + num + ' is invalid!'); return;}
+            for (let i=0; i<Math.floor(num); i++){
+                document.getElementById('p24').textContent += str;
+            }
+        }*/
+        document.querySelector('#p24').textContent = 'Now that is interesting';
+        let para = document.createElement('p');
+        document.querySelector('#col-2').appendChild(para);
+        para.textContent = 'Here I am, the last';
+        para.style.backgroundColor = 'orange';
+        para.setAttribute('id','p24-2');
+        document.querySelector('#p25').textContent = 'Am I next, no :(';
+        let plast = document.querySelector('div#col-2').lastElementChild;
+        plast.textContent = 'Now that is a wowo!';
+        let qall = document.querySelectorAll('p');
+        document.querySelector('#p26').textContent = qall[qall.length-2].id;
+        let p262 = document.createElement('p');
+        let col2 = document.querySelector('#col-2');
+        p262.textContent = 'Let me just slip here';
+        col2.insertBefore(p262,document.querySelector('#p27'));
+        col2.style.cssText = 'background-color: #eee; color: #222';
+        document.querySelector('#p27').textContent = para.getAttribute('style');
+        /* DOM excersizes */
+        const col3 = document.querySelector('#col-3');
+        const pdom1 = document.createElement('p');
+        pdom1.textContent = "Hey, I'm red!";
+        col3.appendChild(pdom1);
+
+        const h3dom1 = document.createElement('h3');
+        h3dom1.textContent = "I'm a blue h3!";
+        col3.appendChild(h3dom1);
+
+        const divdom1 = document.createElement('div');
+        divdom1.style.cssText = 'margin-left: 20px; margin-top: 20px; background-color: #01a4b6;';
+        const h1dom1 = document.createElement('h1');
+        h1dom1.textContent = "I'm in a div!";
+        const pdom2 = document.createElement('p');
+        pdom2.textContent = "ME TOO!";
+        divdom1.appendChild(h1dom1);
+        divdom1.appendChild(pdom2);
+        col3.appendChild(divdom1);
+
+        /* Event exercises */
+        // using callback (e), you can find out how it is called or even find out where exactly called
+        // in the below call, if you click h1 or p only that part gets different color!!!!
+        divdom1.addEventListener('click', (e) => e.target.style.backgroundColor = '#61a4b6');
+
+        const divdom2 = document.createElement('div');
+        const divdomA = document.createElement('div');
+        const divdomS = document.createElement('div');
+        const divdomD = document.createElement('div');
+        
+        const class1 = 'width: 100%; height: 200px; background-color: #bbb; display: flex; justify-content: space-evenly;';
+        const class2 = 'width: 28%; height: 150px; background-color: #eee; text-align: center; margin-top: 25px; line-height: 150px; font-size: 50px; box-sizing: border-box;';
+        //const class3 = 'border: 3px solid black;';
+
+        divdom2.style.cssText = class1;
+        divdomA.style.cssText = class2;
+        divdomS.style.cssText = class2;
+        divdomD.style.cssText = class2;
+
+        divdomA.textContent = 'A';
+        divdomS.textContent = 'S';
+        divdomD.textContent = 'D';
+
+        divdom2.appendChild(divdomA);
+        divdom2.appendChild(divdomS);
+        divdom2.appendChild(divdomD);
+
+        col3.appendChild(divdom2);
+
+        document.addEventListener('keypress', playnow);
+
+        function playnow(e) {
+            let key = e.keyCode;
+            if (key==97){divdomA.style.cssText += 'border: 3px solid ' + randColor();}
+            if (key==115){divdomS.style.cssText += 'border: 3px solid ' + randColor();}
+            if (key==100){divdomD.style.cssText += 'border: 3px solid ' + randColor();}
+        }
+        function randColor() {
+            return 'rgb('+
+            Math.floor(Math.random()*256)+','+
+            Math.floor(Math.random()*256)+','+
+            Math.floor(Math.random()*256)+')';
+        }
+    </script>
+</html>
