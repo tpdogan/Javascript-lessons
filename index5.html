@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../reset.css">
+        <style>
+            body {width: 100%; background-color: bisque;
+                display: flex; justify-content: center;}
+
+            #container {width: 75vmin; height: 75vmin; background-color: navajowhite;
+                display: grid; grid-template-columns: repeat(3, 33.33%);
+                align-items: center; text-align: center;
+                margin-top: 12.5vh;
+                border-radius: 10px;}
+            /* For calculator GUI*/
+            #calculatorGUI {display: grid; grid-template-columns: repeat(4, 50px); grid-gap: 5px;
+                background-color:rgb(134, 51, 90);
+                padding: 5px; border-radius: 5px;}
+            #calcInput {width: 100%; height: 70px; border-radius: 5px;
+                grid-column: 1 / 5; margin-top: 10px;}
+            #calcData {width: 90%; height: 80%; text-align: right;}
+            #calcData:disabled {color: black;}
+            .calcbtn {width: 50px; height: 50px; border-radius: 5px; background-color: #d28fd1;
+                text-align: center; line-height: 50px; box-sizing: border-box; border: none;
+                font-weight: 900; user-select: none; font-family: 'Franklin Gothic Medium', sans-serif;}
+            .calcbtn:hover {border: 2px solid rgba(251, 198, 255, 0.6);
+                box-shadow: 0px 0px 3px 0px rgba(253, 250, 250, 0.75);
+                font-size: 15px; color: white; cursor: pointer;}
+            /* End of calculator GUI*/
+            .TPLogo {width: 50px; height: 50px; border-radius: 5px; color: #FFD700;
+                text-align: center; line-height: 50px; box-sizing: border-box; border: none; grid-column: 4/5;
+                font-weight: 900; user-select: none; font-family: 'Franklin Gothic Medium', sans-serif;}
+
+            #closeButton {width: 5vw; height: 5vw; background-color: none;
+                max-width: 50px; max-height: 50px; min-width: 25px; min-height: 25px;
+                position: absolute; left: 47.5vw; top: 50px; visibility: hidden;}
+            .cross {width: 10px; height: 40px; background-color: rgb(134, 51, 90); position: absolute;
+                border-radius: 10px; margin-left: 1.75vw;}
+            #closeButton:hover > div {scale: 1.1; background-color: #472f47;}
+            
+            .gridbox {width: 100%; height: 100%;
+                box-sizing: border-box;
+                display: flex; justify-content: center; align-items: center;}
+            .application {width: 80%; height: 80%; background-color: #EBAB5D;
+                border-radius: 15px; box-sizing: border-box;
+                transition-duration: 300ms;}
+            .application:hover {width: 90%; height: 90%; transition-duration: 300ms; cursor: pointer;}
+            .openApps {width : 0; height : 0; position : absolute;
+                right : 0; left : 0; top : 0; bottom : 0; border-radius: 10px;
+                margin-left : auto; margin-right : auto; margin-top : 12.5vh; margin-bottom : auto;
+                background-color: none; visibility: hidden; background-color:rgba(155, 112, 92, 0.7);
+                display:flex; justify-content: center; align-items: center;}
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div class="gridbox">
+                <div class="application">
+                    <div id="calculator" class="openApps">
+                        <div id="calculatorGUI">
+                            <div id="calcInput">
+                                <input id="calcData" autocomplete="off" disabled>
+                            </div>
+                            <input type="button" value="/" class="calcbtn"><input type="button" value="*" class="calcbtn">
+                            <input type="button" value="AC" class="calcbtn"><input type="button" value="=" class="calcbtn">
+                            <input type="button" value="-" class="calcbtn"><input type="button" value="7" class="calcbtn">
+                            <input type="button" value="8" class="calcbtn"><input type="button" value="9" class="calcbtn">
+                            <input type="button" value="+" class="calcbtn"><input type="button" value="4" class="calcbtn">
+                            <input type="button" value="5" class="calcbtn"><input type="button" value="6" class="calcbtn">
+                            <input type="button" value="0" class="calcbtn"><input type="button" value="1" class="calcbtn">
+                            <input type="button" value="2" class="calcbtn"><input type="button" value="3" class="calcbtn">
+                            <input type="button" value="." class="calcbtn"><input type="button" value="Backspace" class="calcbtn" style="width: 105px;">
+                            <div class="TPLogo">TPD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div class="gridbox">
+                <div class="application"></div>
+            </div>
+            <div id="closeButton" onclick="closeApp()">
+                <div class="cross" style="transform: rotate(45deg);"></div><div class="cross" style="transform: rotate(-45deg);"></div>
+            </div>
+            <!--<div style="position: absolute; width: 200px; height: 200px; background-color: white; left:0;" id="tester"></div>-->
+        </div>
+    </body>
+    <script>
+        const apps = document.querySelectorAll('.application');
+        Array.from(apps).forEach(function(element){element.addEventListener('click', maximizeApp);});
+
+        document.addEventListener('keydown', function(event){
+            if (event.key == 'Escape') {
+                closeApp();
+            }
+        });
+
+        /* Application open and close */
+        let appID;
+        function maximizeApp(event) {
+            appID = this.children[0].id;
+            const element = document.getElementById(appID).style;
+            element.transitionDuration = '200ms';
+            element.width = '75vmin';
+            element.height = '75vmin';
+            element.visibility = 'visible';
+            element.cursor = 'default';
+            document.getElementById('closeButton').style.visibility = 'visible';
+            stackApp = element;
+        }
+        function closeApp(){
+            stackApp.transitionDuration = '100ms';
+            stackApp.width = '0';
+            stackApp.height = '0';
+            stackApp.visibility = 'hidden';
+            document.getElementById('closeButton').style.visibility = 'hidden';
+            appID = undefined;
+        }
+            /*element.width = '75vmin';
+            element.height = '75vmin';
+            element.position = 'absolute';
+            element.right = '0';
+            element.left = '0';
+            element.top = '0';
+            element.bottom = '0';
+            element.marginLeft = 'auto';
+            element.marginRight = 'auto';
+            element.marginTop = '12.5vh';
+            element.marginBottom = 'auto';*/
+        /* End of application open and close */
+        
+        /* Calculator functions */
+        let num1 = undefined;
+        let num2 = undefined;
+        let operator;
+        let opAdded = false;
+        let eqPressed = false;
+        const calcbtn = document.querySelectorAll('.calcbtn');
+        Array.from(calcbtn).forEach(function(element){element.addEventListener('click', insertExp)});
+        function insertExp(key) {
+            let value = this.value;
+            if (value==undefined) {value = key;}
+            const old = document.getElementById('calcData');
+            if (value=='Backspace'){
+                let removed = old.value.substr(old.value.length-1, old.value.length);
+                old.value = old.value.substr(0,old.value.length-1);
+                if (isOperator(removed)) {opAdded = false;}
+                else if (num2==undefined) {num1 = old.value;}
+                else {
+                    let arr = old.value.split(operator);
+                    num2 = arr[arr.length-1];
+                    if (num2=='') {num2 = undefined;}
+                }
+            }
+            if (!isNaN(value) && !opAdded) {
+                if (eqPressed) {clearAll(); eqPressed = false;}
+                old.value += value;
+                num1 = old.value;
+            }
+            else if(!isNaN(value) && opAdded) {
+                old.value += value;
+                let arr = old.value.split(operator);
+                num2 = arr[arr.length-1];
+            }
+            else if (value=='.'){
+                if (opAdded){
+                    if (num2.includes('.')){}
+                    else {
+                        old.value += value;
+                        let arr = old.value.split(operator);
+                        num2 = arr[arr.length-1];
+                    }
+                }
+                else{
+                    if (num1.includes('.')){}
+                    else {
+                        old.value += value;
+                        num1 = old.value;
+                    }
+                }
+            }
+            else if (isOperator(value)) {
+                if (opAdded==true){
+                    if (num2==undefined) {
+                        old.value = old.value.substr(0,old.value.length-1);
+                        operator = value;
+                        old.value += operator;
+                    }
+                    else {
+                        old.value = operate(operator,num1,num2);
+                        num1 = old.value;
+                        num2 = undefined;
+                        operator = value;
+                        old.value += operator;
+                    }
+                }
+                else if (num1==undefined){
+                    num1 = 0;
+                    opAdded = true;
+                    operator = value;
+                    old.value = num1 + operator;
+                }
+                else {
+                    opAdded = true;
+                    operator = value;
+                    old.value += value;
+                }
+            }
+            else if (value=='='){
+                if (num1==undefined || num2==undefined || operator==undefined){
+                    return;
+                }
+                else if (operator=='/' && num2==0){
+                    alert('Division with zero is infinity!');
+                    clearAll();
+                }
+                else {
+                    old.value = operate(operator,num1,num2);
+                    num1 = old.value;
+                    num2 = undefined;
+                    operator = undefined;
+                    opAdded = false;
+                    eqPressed = true;
+                }
+            }
+            else if (value=='AC'){clearAll();}
+        }
+        function clearAll (){
+            document.getElementById('calcData').value = '';
+            num1 = undefined;
+            num2 = undefined;
+            operator = undefined;
+            opAdded = false;
+
+        }
+        function isOperator(op){
+            if (op=='+' || op=='-' || op=='*' || op=='/' ){
+                return true;
+            }
+        }
+        function operate(op,a,b){
+            switch(op){
+            case '+':
+                return add(a,b);
+                break;
+
+            case '-':
+                return subtract(a,b);
+                break;
+
+            case '*':
+                return multiply(a,b);
+                break;
+
+            case '/':
+                return (divide(a,b)).toFixed(2);
+                break;
+            }
+        }
+        function add(a,b){return Number(a)+Number(b);}
+        function subtract(a,b){return a-b;}
+        function multiply(a,b){return a*b;}
+        function divide(a,b){return a/b;}
+
+        document.addEventListener('keydown', addCalcKey);
+        function addCalcKey(event){
+            if (appID=='calculator'){   
+                const old = document.getElementById('calcData');
+                let key = event.key;
+                if (!isNaN(key) || isOperator(key) || key=='.' || key=='Backspace' || event.keyCode==13)
+                {
+                    if (event.keyCode==13){key = '=';}
+                    insertExp(key);
+                }
+            }
+        }
+        /* End of calculator functions */
+    </script>
+</html>

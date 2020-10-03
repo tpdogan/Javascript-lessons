@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../reset.css">
+        <style>
+            body {display: flex; flex-wrap: wrap; background-color: beige;}
+            div {width: 200px; height: 200px; background-color: aquamarine;
+                border: solid 1px bisque;}
+        </style>
+    </head>
+    <body>
+        <div id="div1">Here </div>
+        <div id="div2">Here </div>
+        <div id="div3">Here </div>
+        <div id="div4">Here </div>
+        <div id="div5">Here </div>
+        <div id="div6">Here </div>
+        <div id="div7">Here </div>
+    </body>
+    <script>
+        const invetors = [
+            {first: 'A', last: 'B', year: 140, die: 160},
+            {first: 'C', last: 'D', year: 129, die: 150},
+            {first: 'E', last: 'F', year: 128, die: 130},
+            {first: 'M', last: 'N', year: 130, die: 202},
+        ];
+        const composers = [
+            'G, H', 'I, J', 'K, L', 'M, N', 'A, B', 'C, R'
+        ];
+        // .filter goes through each object within the array and finds that meet condition
+        // inventors that match the year condition are returned
+        const feight = invetors.filter(
+            function (inventor) {
+                if (inventor.year>=125 && inventor.year<=128){
+                    return true;
+                }
+            }
+        );
+
+        const feight2 = invetors.filter(inventor => (inventor.year>=125 && inventor.year<=128));
+        console.table(feight);
+        document.getElementById('div1').textContent += Array.isArray(feight2);
+        document.getElementById('div1').textContent += ' ' + feight2.length;
+
+        // .map goes through each object within the array and returns array with the property for all
+        // first and last for all of the inventors are returned
+        const fullNames = invetors.map(invetor => invetor.first + ' ' + invetor.last);
+        document.getElementById('div2').textContent += fullNames;
+
+        // .sort goes through each object and applies sorting expression
+        const sorted = invetors.sort(function(inv1, inv2){
+            if (inv1.year > inv2.year) {return 1;}
+            else return -1;
+        });
+
+        document.getElementById('div3').textContent += sorted.map(inventor => inventor.year);
+        
+        const sorted2 = invetors.sort((inv1, inv2) => (inv1.year>inv2.year) ? 1 : -1);
+        document.getElementById('div3').textContent += '\n' + sorted2.map(inventor => inventor.year);
+        document.getElementById('div3').textContent += '\n' + invetors.map(inventor => inventor.year);
+
+        // .reduce calculates
+        const totalYears = invetors.reduce((total, inventor) => total += inventor.year/2, 0);
+        document.getElementById('div4').textContent += totalYears;
+
+        // .sort by years lived
+        const sorted3 = invetors.sort((inv1,inv2) => inv1.die - inv1.year > inv2.die - inv2.year ? -1 : 1);
+        document.getElementById('div5').textContent += sorted3.map(inventor => inventor.first);
+
+        // .sort array without objects
+        const sorted4 = composers.sort();
+        document.getElementById('div6').textContent += sorted4.map(comp => comp.toString());
+        console.table(sorted4);
+
+        // .reduce array to objects
+        const all = ['a', 'a', 'e', 'r', 'e', 'a', 'b'];
+        const reduced = all.reduce(function (obj, item){
+            if (!obj[item]) {obj[item]=0;}
+            obj[item]++;
+            return obj;
+        }, {});
+        console.log(reduced);
+
+        // .some if exist at least once
+        const exists = invetors.some(inventor => {
+            currentYear = (new Date()).getFullYear();
+            return currentYear/10==inventor.die;
+        });
+        const exists2 = invetors.some(inventor => currentYear = (new Date()).getFullYear()/10==inventor.die);
+        console.log(exists2==exists);
+
+        // .every if exist for all 
+        const exists3 = invetors.every(inventor => currentYear = (new Date()).getFullYear()/10==inventor.die);
+        console.log(exists3);
+
+        // .find the first instance only
+        const found = invetors.find(inventor => inventor.die==160);
+        console.log(found);
+
+        // .findIndex finds the location
+        const index = invetors.findIndex(inventor => inventor.die==202);
+        console.log(index);
+        
+        const newInvetors = [...invetors.slice(0,index), ...invetors.slice(index+1)];
+        console.log(newInvetors);
+        invetors.splice(index,1);
+        console.log(invetors);
+    </script>
+</html>
